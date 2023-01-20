@@ -22,8 +22,8 @@ test: inspect
 dependencies:
 
 ofrak/gui/public:
-	if [ -d /ofrak_gui ] ; then \
-		cp -r /ofrak_gui ofrak/gui/public ; \
+	if [ -d ofrak_gui ] ; then \
+		cp -r ofrak_gui ofrak/gui/public ; \
 	else \
 		pushd ../frontend ; \
 		npm run build ; \
