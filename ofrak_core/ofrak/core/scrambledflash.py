@@ -3,12 +3,14 @@ from abc import ABC, abstractmethod
 from typing import Iterable
 
 from ofrak.core.binary import GenericBinary
-from ofrak.resource import Resource
-from ofrak_type.range import Range
 from ofrak.component.unpacker import Unpacker, UnpackerError
 from ofrak.component.packer import Packer, PackerError
+from ofrak.resource import Resource
 from ofrak.service.resource_service_i import ResourceFilter
 from ofrak.model.resource_model import ResourceAttributes
+from ofrak_type.range import Range
+from ofrak_type.error import NotFoundError
+
 
 #####################
 #     RESOURCES     #
@@ -27,7 +29,7 @@ class ScrambledFlashLogicalDataResource(GenericBinary):
     """
 
 #####################
-#    ATTRIBUTES     #
+#     ABSTRACTS     #
 #####################
 class FlashEncodingAlgorithm(ABC):
     """
@@ -41,6 +43,9 @@ class FlashEncodingAlgorithm(ABC):
     def decode(self, payload: bytes, key: bytes) -> bytes:
         raise NotImplementedError()
 
+#####################
+#    ATTRIBUTES     #
+#####################
 @dataclass(**ResourceAttributes.DATACLASS_PARAMS)
 class FlashEncodingAttributes(ResourceAttributes):
     """
